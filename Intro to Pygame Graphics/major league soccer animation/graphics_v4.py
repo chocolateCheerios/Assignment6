@@ -87,22 +87,21 @@ while not done:
                 day = not day
 
     # Game logic (Check for collisions, update points, etc.)
-    ''' leave this section alone for now ''' 
-    if lights_on:
-        light_color = YELLOW
-    else:
-        light_color = SILVER
+    ''' make code simplier with less loops fro lights and shades of things dependant on night or day ''' 
+    light_color = YELLOW if lights_on else SILVER
 
     if day:
-        sky_color = BLUE
-        field_color = GREEN
-        stripe_color = DAY_GREEN
-        cloud_color = WHITE
+         sky_color, field_color, stripe_color, cloud_color = BLUE, GREEN, DAY_GREEN, WHITE
     else:
-        sky_color = DARK_BLUE
-        field_color = DARK_GREEN
-        stripe_color = NIGHT_GREEN
-        cloud_color = NIGHT_GRAY
+    	sky_color, field_color, stripe_color, cloud_color = DARK_BLUE, DARK_GREEN, NIGHT_GREEN, NIGHT_GRAY
+
+    for c in clouds:
+        c[0] -= 0.5
+
+        if c[0] < -100:
+            c[0] = random.randrange(800, 1600)
+            c[1] = random.randrange(0, 150)
+          
 
     for c in clouds:
         c[0] -= 0.5
